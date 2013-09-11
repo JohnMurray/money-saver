@@ -3,9 +3,6 @@
     <input type="text" name="amount" />
     <input type="submit" name="add" value="add" />
   </form>
-  <form method="get" action="/destroy-all" style="display:inline">
-    <input type="submit" name="clear" value="clear" />
-  </form>
 </p>
 
 <b>Total: </b><%= "%10.2f" % @sum %>
@@ -14,3 +11,9 @@
     <li><%= "%10.2f" % s.amount %></li>
   <% end %>
 </ul>
+
+<p>
+  <form method="get" action="/destroy-all" style="display:inline">
+    <input type="submit" name="clear-all" value="clear-all" />
+  </form>
+</p>
