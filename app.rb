@@ -11,5 +11,6 @@ get '/' do
 end
 
 post '/add' do
-  Saving.add(:amount => params['amount'].to_f)
+  Saving.create(:amount => params['amount'].to_f)
+  redirect '/'
 end
