@@ -1,10 +1,4 @@
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/sinatra-test")
-
-#class Person
-#  include DataMapper::Resource
-#  property :id, Serial
-#  property :firstname, String
-#end
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/money-saving")
 
 class Saving
   include DataMapper::Resource
@@ -13,4 +7,4 @@ class Saving
 end
 
 DataMapper.finalize
-DataMapper.auto_upgrade!
+#DataMapper.auto_upgrade!
