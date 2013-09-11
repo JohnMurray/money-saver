@@ -1,10 +1,16 @@
+<p>
+  <form method="post" action="/add" style="display:inline">
+    <input type="text" name="amount" />
+    <input type="submit" name="add" value="add" />
+  </form>
+  <form method="get" action="/destroy-all" style="display:inline">
+    <input type="submit" name="clear" value="clear" />
+  </form>
+</p>
+
+<b>Total: </b><%= "%10.2f" % @sum %>
 <ul>
   <% @savings.each do |s| %>
-    <li><%= s.amount %></li>
+    <li><%= "%10.2f" % s.amount %></li>
   <% end %>
 </ul>
-
-<form method="post" action="/add" >
-  <input type="text" name="amount" />
-  <input type="submit" name="add" value="add" />
-</form>

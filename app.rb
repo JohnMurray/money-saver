@@ -7,6 +7,7 @@ set :root, File.dirname(__FILE__)
 
 get '/' do
   @savings = Saving.all.to_a
+  @sum = @savings.inject(0) {|sum, s| sum + s.amount}
   erb :saving
 end
 
