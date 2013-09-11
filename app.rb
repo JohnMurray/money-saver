@@ -14,3 +14,8 @@ post '/add' do
   Saving.create(:amount => params['amount'].to_f)
   redirect '/'
 end
+
+get '/destroy-all' do
+  Saving.all.each {|s| s.destroy}
+  redirect '/'
+end
