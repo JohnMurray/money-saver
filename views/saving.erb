@@ -1,19 +1,42 @@
-<p>
-  <form method="post" action="/add" style="display:inline">
-    <input type="number" name="amount" step="0.01" />
+<!-- Add Item Form -->
+<div class="title">Add a New item</div>
+<div class="top-form">
+  <form action="/add-item" method="POST">
+    <label>url: </label>
+    <input type="text" name="url" />
+    <label>amount: </label>
+    <input type="number" name="price" step="0.01" />
     <input type="submit" name="add" value="add" />
   </form>
-</p>
+</div>
 
-<b>Total: </b><%= "%10.2f" % @sum %>
-<ul>
-  <% @savings.each do |s| %>
-    <li><%= "%10.2f" % s.amount %></li>
-  <% end %>
-</ul>
+<!-- List of Items -->
+<div class="title">Items</div>
+<% @items.each do |i| %>
+  <div class="item">
+    <img src="<%= i.image_url %>" class="item" />
 
-<p>
-  <form method="get" action="/destroy-all" style="display:inline">
-    <input type="submit" name="clear-all" value="clear-all" />
-  </form>
-</p>
+    <% percent = (i.contrib_sum / i.price * 100).round %>
+
+    <div class="item-left">
+      <!-- progress bar -->
+      <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent %>%">
+        <span class="sr-only"><%= percent %>% Complete</span>
+        </div>
+      </div>
+      
+      <div class="progress-exact">
+        <b><%= i.contrib_sum %></b> out of <b><%= i.price %></b> saved so far
+      </div>
+
+      <!-- Contribute Money Toward Item -->
+      <form action="/contribute/<%=i.id%>" method="POST" class="item-form">
+        <label>amount: </label>
+        <input type="number" name="amount" step="0.01" />
+        <input type="submit" name="contrib" value="put away" />
+      </form>
+    </div>
+  </div>
+  <hr />
+<% end %>
