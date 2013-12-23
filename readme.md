@@ -1,10 +1,16 @@
-# Sinatra-Heroku Template
+# Saving For Stuff
 
-#### _A template to quickly get [Sinatra](http://sinatrarb.com) apps running and served up on [Heroku](http://heroku.com)._
+This is a simple personal-savings app that allows you to pick items that
+you would like to buy and contribute dollar amounts towards the total every
+time you save money (eg. not eating out one night you typically would).
+
+It's a very simple application and you can get it setup via the following
+instructions below.
 
 ## Installation
 
-First you have to install Postgres.app and Ruby on your computer. Then download this template, `cd` to it, and install the gems
+First you have to install Postgres.app and Ruby on your computer. Then 
+download this app, `cd` to it, and install the gems.
 
 	$ bundle install
 
@@ -16,13 +22,16 @@ Your app should then be running at `http://localhost:9393`.
 
 ## Heroku App Creation
 
-Heroku relies on [Git](http://devcenter.heroku.com/articles/git) for deploying apps so initialize git for the app.
+Heroku relies on [Git](http://devcenter.heroku.com/articles/git) 
+for deploying apps so initialize git for the app.
 
 	$ git init
 	$ git add .
 	$ git commit -m "Initial Commit"
 
-To create a Heroku app, first be sure you are [signed up](https://api.heroku.com/signup). Then type the following in Terminal while inside of the project directory.
+To create a Heroku app, first be sure you are 
+[signed up](https://api.heroku.com/signup). Then type the following in 
+the terminal while inside of the project directory.
 
 	$ heroku create NAME_OF_YOUR_APP
 
@@ -32,7 +41,8 @@ Once this returns successfully, push your app to Heroku.
 
 ## Heroku Database Creation
 
-If you're using DataMapper with a database, you will need to add a database. Run these commands from the root of your project, relacing the last database url with the name logged after the first command.
+You'll need to add a database to Heroku. Currently I setup the project to use
+a postgres database, so you can use the free version and you can do the following:
 
 	$ heroku addons:add heroku-postgresql:dev
 	$ heroku pg:promote [HEROKU_POSTGRESQL_REPLACEME_URL]
