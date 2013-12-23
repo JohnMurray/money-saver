@@ -3,37 +3,23 @@ require 'bundler'
 Bundler.require
 require './database.rb'
 
-set :root, File.dirname(__FILE__)
 
-get '/' do
-  @items = Item.all.to_a
-  @items.each do |item|
-    item.contrib_sum = item.contributions.inject(0) {|sum, c|
-      sum + c.amount
-    }
+class SavingsApp < Sinatra::Base
+
+  configure do
+    enable :static, :logging, :dump_errors
+    set :root, File.dirname(__FILE__)
   end
 
-  erb :saving
+  configure :development do
+    enable :raise_errors
+    enable :show_exceptions
+  end
+
 end
 
-post '/add' do
-  Saving.create(:amount => params['amount'].to_f)
-  redirect '/'
-end
 
-get '/destroy-all' do
-  Saving.all.each {|s| s.destroy}
-  redirect '/'
-end
-
-post '/add-item' do
-  Item.create(:price => params['price'].to_f, :image_url => params['url'])
-  redirect '/'
-end
-
-post '/contribute/:item_id' do
-  params['item_id'] + params['amount']
-  item = Item.get(params['item_id'].to_i)
-  Contribution.create(amount: params['amount'].to_f, item: item)
-  redirect '/'
-end
+#----
+# Load all the Sinatra Routes
+#----
+require_relative 'routes/init'
