@@ -15,8 +15,8 @@ class Item
   include DataMapper::Resource
 
   property :id,        Serial
-  property :price,     Float,                  :default => 0.0
-  property :image_url, String, :length => 300, :default => ''
+  property :price,     Float,   :default => 0.0
+  property :image_url, Text,    :default => ''
 
   has n, :contributions
 end
@@ -34,4 +34,4 @@ class Contribution
 end
 
 DataMapper.finalize
-DataMapper.auto_upgrade!
+#DataMapper.auto_upgrade!
